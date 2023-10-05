@@ -22,13 +22,27 @@ function caesarCipher(string, n) {
 
     const shiftLetter = (letter, n) => {
 
+        if (letter == " " ||
+            letter == "," ||
+            letter == "." ||
+            letter == "!" ||
+            letter == "?" ||
+            letter == ";" ||
+            letter == ":") return letter
+
         let alphabet = [
             'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
             'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
           ];
     
         for (let index in alphabet) {
-            if (alphabet[index] === letter) return alphabet[calculateShiftedIndex(index, n)]
+            if (alphabet[index] === letter.toLowerCase()) {
+
+                let shiftedLetter = alphabet[calculateShiftedIndex(index, n)]
+                return (letter.toLowerCase() === letter) 
+                            ? shiftedLetter
+                            : shiftedLetter.toUpperCase()
+            }
         };
     }
 
@@ -44,8 +58,20 @@ function caesarCipher(string, n) {
     stringArray.map((l) => finalString += shiftLetter(l, n))
 
     return finalString;
+};
 
-}
+function analyzeArray(array) {
+
+    let length = array.length;
+    let min = Math.min(...array);
+    let max = Math.max(...array);
+    let average = array.reduce((a,b) => a + b,0 ) / length
+
+    return {average: average,
+            min: min,
+            max: max,
+            length: length}
+};
 
 
 
@@ -53,4 +79,5 @@ function caesarCipher(string, n) {
 module.exports = {  capitalize,
                     reverseString,
                     calculator,
-                    caesarCipher };
+                    caesarCipher,
+                    analyzeArray };

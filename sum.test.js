@@ -1,7 +1,8 @@
 const { capitalize, 
         reverseString,
         calculator,
-        caesarCipher } = require('./jest_practice');
+        caesarCipher,
+        analyzeArray } = require('./jest_practice');
 
 
 test("capatilize first letter", () => {
@@ -24,4 +25,13 @@ test("ceasar shift", () => {
     expect(caesarCipher("CaSe SeNsAtIvE", 1)).toBe("DbTf TfOtBuJwF");
     expect(caesarCipher("Z", 3)).toBe("C");
     expect(caesarCipher(".!,", 5)).toBe(".!,");
+    expect(caesarCipher("Caesar Cipher?", 14)).toBe("Qosgof Qwdvsf?")
+});
+
+test("analyze Array", () => {
+    const object = analyzeArray([1,2,3,4]);
+    expect(object.average).toBe(2.5);
+    expect(object.min).toBe(1);
+    expect(object.max).toBe(4);
+    expect(object.length).toBe(4);
 })
